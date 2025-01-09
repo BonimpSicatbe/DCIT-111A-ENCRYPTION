@@ -1,0 +1,436 @@
+@import url("./variables.css");
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+/* Carousel Styles */
+.carousel {
+    /* position: fixed; */
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.carousel-item {
+    min-width: 100%;
+    box-sizing: border-box;
+    position: relative; /* Ensure relative positioning */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-item .bg-overlay {
+    background: rgb(0,0,0);
+    background: -moz-linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 75%);
+    background: -webkit-linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 75%);
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 75%);
+
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    z-index: 0;
+}
+
+.carousel img {
+    height: 100vh;
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+}
+
+.carousel-caption {
+    position: absolute;
+    bottom: 100px; /* Adjust to move caption above indicators */
+    color: white;
+    
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 10; /* Ensure caption is on top of indicators */
+    width: 75%;
+}
+.carousel-caption h3 {
+    font-size: 3rem;
+    width: 75%;
+}
+.carousel-caption p {
+    font-size: 1rem;
+    width: 75%;
+}
+
+/* Navigation Controls */
+.carousel-control-prev, .carousel-control-next {
+    position: absolute;
+    top: 50%;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transform: translateY(-50%);
+}
+
+.carousel-control-prev {
+    left: 10px;
+}
+
+.carousel-control-next {
+    right: 10px;
+}
+
+/* Indicators */
+.carousel-indicators-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-indicators {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    position: absolute;
+    bottom: 25px;
+    width: 75%;
+    height: 50px;
+    z-index: 5; /* Ensure indicators are below the caption */
+}
+
+.carousel-indicators-buttons {
+    height: 100%;
+    width: 25%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    column-gap: 20px;
+}
+
+.carousel-indicators-buttons a {
+    background-color: var(--dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 25px;
+    column-gap: 20px;
+    text-decoration: none;
+    color: var(--light);
+    border-radius: 10px;
+}
+
+.carousel-indicators-buttons a:first-child {
+    flex-grow: 1;
+    justify-content: start;
+}
+
+.carousel-indicators .carousel-indicators-content::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-indicators .carousel-indicators-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    column-gap: 10px;
+    height: 100%;
+    width: 100%;
+    overflow-x: scroll;
+}
+
+.carousel-indicators .carousel-indicators-content button {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    padding: 1px;
+    height: 100%;
+    width: auto; /* Fixed width for equal size */
+    cursor: pointer;
+}
+
+.carousel-indicators .carousel-indicators-content button img {
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+    object-position: center;
+}
+
+.carousel-indicators .carousel-indicators-content button.active {
+    background-color: white;
+}
+
+/* Card Lists Section */
+
+.lists-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    row-gap: 50px;
+    
+    background-color: black;
+    
+    color: var(--light);
+    padding-top: 50px;
+    
+    width: 100%;
+    overflow: hidden;
+}
+
+.ls-section {
+    width: 75%;
+}
+
+.ls-section-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.ls-section-header a {
+    color: var(--gold);
+    transition: all .25s;
+}
+
+.ls-section-header a:hover {
+    transform: scale(1.25);
+    color: var(--bright-yellow);
+}
+
+.popular-shows {
+    width: 75%;
+    padding-left: 20px;
+}
+
+.show-list-row {
+    padding-left: 50px;
+}
+
+.card-section {
+    display: flex;
+    flex-direction: row;
+    padding: 25px;
+    overflow: scroll;
+    column-gap: 20px;
+}
+
+.card-section::-webkit-scrollbar {
+    display: none;
+}
+/* Individual Cards */
+.show-lists-section .card {
+    flex: 0 0 auto; /* Prevent cards from shrinking */
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Initial shadow */
+    position: relative; /* To position the overlay */
+    
+    width: calc(20vw - 100px); /* Fixed width for cards */
+    height: 20vw;
+}
+
+.show-lists-section .card:hover {
+    position: relative;
+    z-index: 100;
+    transform: scale(1.1); /* Slightly enlarge card on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+}
+
+.show-lists-section .card a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.show-lists-section .card a img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-overlay h2 {
+    /* padding: 25px; */
+    /* width: 100%; */
+    text-align: center;
+}
+
+.show-lists-section .card .card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    color: var(--light);
+    /* padding-bottom: 50px;     */
+    background: rgb(0,0,0);
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%); /* Semi-transparent background */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card-overlay-padding {
+    color: var(--light);
+    padding: 0 10px;
+}
+
+.price {
+    color: var(--gold);
+}
+
+.quantity-selector {
+    display: flex;
+}
+
+.show-lists-section .card:hover .card-overlay {
+    opacity: 1;
+}
+
+.show-lists-section .card:hover .card-overlay .price {
+    color: var(--gold);    
+    font-weight: bold;
+}
+
+.show-lists-section .card .icon-btn {
+    margin: 10px;
+    background-color: var(--deep-red);
+    padding: 10px;
+    border-radius: 50%;
+    color: var(--light);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.show-lists-section .card .icon-btn:hover {
+    background-color: var(--bright-red);
+}
+
+.show-lists-section .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Individual Cards */
+.card {
+    flex: 0 0 auto; /* Prevent cards from shrinking */
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Initial shadow */
+    position: relative; /* To position the overlay */
+    
+    width: calc(20vw - 100px); /* Fixed width for cards */
+    height: 20vw;
+}
+
+.card:hover {
+    transform: scale(1.1); /* Slightly enlarge card on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+}
+
+.card a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.card a img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card .card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    background: rgb(0,0,0);
+    background: linear-gradient(0deg, rgba(0,0,0,1) 15%, rgba(0,0,0,0) 75%); /* Semi-transparent background */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card .card-overlay .button-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 75%;
+    height: auto;
+    column-gap: 20px;
+    padding-bottom: 10px;
+}
+
+.card .card-overlay .button-section button {
+    /* flex-grow: 1; */
+    background-color: transparent;
+    border: none;
+}
+.card .card-overlay .button-section button i {
+    font-size: 1.5rem;
+    color: var(--bright-red);
+}
+
+.card .card-overlay .star-rating {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: var(--bright-yellow);
+}
+
+.card .card-overlay .star-rating i:hover {
+    color: var(--gold);
+}
+
+
+.card:hover .card-overlay {
+    opacity: 1;
+}
+
+.card .icon-btn {
+    margin: 10px;
+    background-color: var(--deep-red);
+    padding: 10px;
+    border-radius: 50%;
+    color: var(--light);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.card .icon-btn:hover {
+    background-color: var(--bright-red);
+}

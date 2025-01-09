@@ -1,0 +1,399 @@
+.vertical-line {
+    width: 1px; /* Width of the vertical line */
+    height: 100%; /* Height of the vertical line */
+    background-color: white; /* Color of the vertical line */
+    margin: 0 auto; /* Center the line horizontally */
+}
+
+.show-detail {
+    width: 100%;
+    height: 100vh;
+}
+
+.show-detail #show-detail-bg {
+    object-fit: cover;
+    object-position: center;
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+}
+
+.show-detail-description {
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0, rgba(0,0,0,0) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    position: absolute;
+}
+
+.show-detail-description-content {
+    width: 75%;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: row;
+    column-gap: 50px;
+}
+
+.show-detail-description .show-detail-description-img {
+    box-shadow: 0px 1px 9px 3px rgba(0,0,0,0.74);
+    height: 250px;
+    width: auto;
+}
+
+.show-detail-description .header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: var(--light);
+    width: 100%;
+}
+
+.buy-ticket-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+}
+
+.buy-ticket-section .right {
+    height: 100%;
+}
+
+.buy-ticket-section .right button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 25px;
+    padding: 0 25px;
+    height: 100%;
+    background-color: var(--gold);
+    border: none;
+    border-radius: 10px;
+    transition: all .25s;
+}
+
+.buy-ticket-section .right button:hover {
+    background-color: var(--bright-yellow);
+    transform: scale(1.25);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.show-detail-description .header p {
+    text-align: justify;
+    width: 75%;
+}
+
+.show-detail-section {
+    width: 100%;
+    display: flex;
+    background-color: var(--black);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+}
+
+.show-detail-section hr {
+    border: 1px solid rgb(69, 69, 69);
+}
+
+.show-detail-container {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.show-detail-contents {
+    width: 75%;
+    color: var(--light);
+    padding: 50px 0;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+
+.show-detail-contents .left {
+    min-width: 25%;
+}
+
+.show-detail-contents .right {
+    min-width: 75%;
+}
+
+.show-detail-contents .right p {
+    text-align: justify;
+    line-height: 30px;
+}
+
+.show-detail-container h1 {
+    color: var(--light);
+    text-align: left;
+}
+
+.show-time-container {
+    width: 100%;
+}
+
+.show-time-container > .container {
+    display: flex;
+    justify-content: space-between; /* Ensure all cards are spaced evenly */
+    flex-wrap: nowrap; /* Prevent wrapping */
+    overflow-x: auto; /* Allow horizontal scrolling if necessary */
+    padding: 20px;
+}
+
+.show-time-container > .container > .card {
+    background-color: var(--dark);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 8px;
+    flex: 1 1 auto; /* Allow the card to shrink and grow */
+    max-width: calc(100% / 7 - 16px); /* Ensure all cards fit within the container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    box-sizing: border-box;
+    max-height: 100%;
+}
+
+.show-time-container > .container > .card h3 {
+    font-size: 1.2em;
+    color: var(--light);
+}
+
+.show-time-container > .container > .card h4 {
+    color: var(--light);
+    margin-bottom: 16px;
+} 
+
+.showtime {
+    background-color: var(--gold);
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    font-size: 1.1em;
+    transition: all .25s;
+}
+
+.showtime:hover {
+    transform: scale(1.13);
+    background-color: var(--bright-yellow);
+}
+
+.showtime a {
+    color: var(--dark);
+}
+
+.no-performance {
+    color: #777;
+    font-size: 1.1em;
+}
+
+.cast-and-creative {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 50px;
+}
+
+.cast-column {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    row-gap: 25px;
+    font-size: 1.25rem;
+}
+
+.cast-column .person {
+    width: 50%;
+}
+
+.left h1 {
+    padding-right: 50px;
+}
+
+
+/* Button Overlay */
+.buttonOverlay {
+    display: none;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    z-index: 25;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    /* opacity: 0; */
+
+    transition: all .25s ease-in-out;
+}
+
+    /* Button Overlay Body */
+.buttonOverlay-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+}
+
+.buttonOverlay-body-content {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    column-gap: 50px;
+    width: 100%;
+    justify-content: space-between;
+    z-index: 100;
+}
+
+.buttonOverlay-dialog {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+    width: 75%;
+    border-radius: 8px;
+    /* max-width: 500px; */
+    
+    /* margin: 10% auto; */
+    /* border: 1px solid #888; */
+    /* background-color: var(--dark); */
+}
+
+.buttonOverlay-content {
+    display: flex;
+    flex-direction: column;
+    row-gap: 25px;
+    background-color: var(--dark);
+    padding: 25px;
+    width: 100%;
+}
+
+.buttonOverlay-header {
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+}
+
+.buttonOverlay-footer {
+    display: flex;
+    justify-content: end;
+}
+
+.close {
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: red;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn {
+    padding: 10px 20px;
+    background-color: var(--gold);
+    color: var(--dark);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.btn-cancel {
+    background-color: #6c757d;
+}
+
+.btn-cancel:hover {
+    background-color: var(--deep-red);
+    color: var(--light);
+}
+.btn-confirm:hover {
+    background-color: var(--bright-yellow);
+}
+
+.buttonOverlay-container {
+    flex-grow: 1;
+    /* padding: 10px; */
+}
+
+.buttonOverlay-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 25px;
+    /* justify-content: space-between; */
+    /* width: 100%; */
+    /* background-color: rebeccapurple; */
+}
+
+.buttonOverlay-card h4 {
+    width: 25%;
+}
+
+.buttonOverlay-card .showtime-container {
+    display: flex;
+    flex-direction: row;
+    column-gap: 15px;
+}
+
+.ticket-summary {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.show-time {
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+    width: 100%;
+}
+
+.show-time > h3 {
+    width: 50%;
+}
+.show-time .right {
+    width: 50%;
+}
+
+.quantity-selector {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    column-gap: 10px;
+}
+
+.quantity-selector button {
+    width: 30px;
+    height: 30px;
+    background-color: var(--gold);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.quantity-selector input {
+    width: 50px;
+    text-align: center;
+}
+

@@ -1,0 +1,101 @@
+/* Individual Cards */
+.card {
+    flex: 0 0 auto; /* Prevent cards from shrinking */
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Initial shadow */
+    position: relative; /* To position the overlay */
+    
+    width: calc(20vw - 100px); /* Fixed width for cards */
+    height: 20vw;
+}
+
+.card:hover {
+    transform: scale(1.1); /* Slightly enlarge card on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+}
+
+.card a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.card a img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card .card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    background: rgb(0,0,0);
+    background: linear-gradient(0deg, rgba(0,0,0,1) 15%, rgba(0,0,0,0) 75%); /* Semi-transparent background */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card .card-overlay .button-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 75%;
+    height: auto;
+    column-gap: 20px;
+    padding-bottom: 10px;
+}
+
+.card .card-overlay .button-section button {
+    /* flex-grow: 1; */
+    background-color: transparent;
+    border: none;
+}
+.card .card-overlay .button-section button i {
+    font-size: 1.5rem;
+    color: var(--bright-red);
+}
+
+.card .card-overlay .star-rating {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: var(--bright-yellow);
+}
+
+.card .card-overlay .star-rating i:hover {
+    color: var(--gold);
+}
+
+
+.card:hover .card-overlay {
+    opacity: 1;
+}
+
+.card .icon-btn {
+    margin: 10px;
+    background-color: var(--deep-red);
+    padding: 10px;
+    border-radius: 50%;
+    color: var(--light);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.card .icon-btn:hover {
+    background-color: var(--bright-red);
+}

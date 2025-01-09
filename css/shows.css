@@ -1,0 +1,481 @@
+@import url("./variables.css");
+
+body {
+    background-color: black;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+/* Carousel Styles */
+.carousel {
+    /* position: fixed; */
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.carousel-item {
+    min-width: 100%;
+    box-sizing: border-box;
+    position: relative; /* Ensure relative positioning */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-item .bg-overlay {
+    background: rgb(0,0,0);
+    background: -moz-linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 75%);
+    background: -webkit-linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 75%);
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 75%);
+
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    z-index: 0;
+}
+
+.carousel img {
+    height: 100vh;
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+}
+
+.carousel-caption {
+    position: absolute;
+    bottom: 100px; /* Adjust to move caption above indicators */
+    color: white;
+    
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 10; /* Ensure caption is on top of indicators */
+    width: 75%;
+}
+.carousel-caption h3 {
+    font-size: 3rem;
+    width: 75%;
+}
+.carousel-caption p {
+    font-size: 1rem;
+    width: 75%;
+}
+
+/* Navigation Controls */
+.carousel-control-prev, .carousel-control-next {
+    display: none;
+    position: absolute;
+    top: 50%;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transform: translateY(-50%);
+}
+
+.carousel-control-prev {
+    left: 10px;
+}
+
+.carousel-control-next {
+    right: 10px;
+}
+
+/* Indicators */
+.carousel-indicators-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-indicators {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    bottom: 25px;
+    width: 75%;
+    height: 50px;
+    z-index: 5; /* Ensure indicators are below the caption */
+}
+
+.carousel-indicators-buttons {
+    height: 100%;
+    width: 25%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    column-gap: 20px;
+}
+
+.carousel-indicators-buttons a {
+    background-color: var(--dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 25px;
+    column-gap: 20px;
+    text-decoration: none;
+    color: var(--light);
+    border-radius: 10px;
+}
+
+.carousel-indicators-buttons a:first-child {
+    flex-grow: 1;
+    justify-content: start;
+}
+
+.carousel-indicators .carousel-indicators-content::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-indicators .carousel-indicators-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    column-gap: 10px;
+    height: 100%;
+    width: 75%;
+    overflow-x: scroll;
+}
+
+.carousel-indicators .carousel-indicators-content button {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    padding: 1px;
+    height: 100%;
+    width: auto; /* Fixed width for equal size */
+    cursor: pointer;
+}
+
+.carousel-indicators .carousel-indicators-content button img {
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+    object-position: center;
+}
+
+.carousel-indicators .carousel-indicators-content button.active {
+    background-color: white;
+}
+
+/* 
+----- ----- ----- ----- ----- 
+2nd Navbar
+----- ----- ----- ----- ----- 
+ */
+/* Main Section */
+.main-section {
+    position: absolute;
+    top: 100px;  
+    width: 100%;
+}
+
+.main-section h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--light);
+}
+
+/* Sub Navbar */
+.sub-navbar {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.sub-navbar ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 15px;
+    padding: 10px 0;
+}
+
+.sub-navbar ul li {
+    list-style-type: none;
+    width: 150px;
+    height: 25px;
+    text-align: center;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    transition: all .5s ease-in-out;
+}
+
+.sub-navbar ul li:hover a {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--gold);
+}
+
+.sub-navbar ul li a {
+    color: var(--light);
+    width: 100%;
+    transition: all .25s ease-in-out;
+}
+
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .content-section .card-container {
+        width: 85%;
+    }
+}
+
+@media (max-width: 992px) {
+    .content-section .card-container {
+        width: 95%;
+    }
+}
+
+@media (max-width: 768px) {
+    .content-section .card-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .content-section .card-container .card {
+        flex: 1 1 100%;
+        max-width: none;
+    }
+}
+
+/* Show Lists Content */
+.show-lists-section .header h1 {
+    width: 100%;
+    text-align: center;
+}
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 15px;
+    padding: 10px 0;
+}
+.nav-item {
+  list-style: none;
+}
+.nav-link {
+  display: block;
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  text-decoration: none;
+  color: var(--light);
+  /* font-weight: bold; */
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+.nav-link.active {
+  color: var(--dark);
+  font-weight: bold;
+  background-color: var(--gold);
+  /* font-weight: bold; */
+  /* border-color: #007bff; */
+}
+.tab-content > .tab-pane {
+  display: none;
+  padding: 1rem;
+  border-top: none;
+}
+.tab-content > .tab-pane.active {
+  display: block;
+}
+
+/* 
+----- ----- ----- ----- ----- 
+SHOW LISTS SECTION
+----- ----- ----- ----- ----- 
+*/
+
+.header h1 {
+    display: flex;
+    justify-content: center;
+}
+
+/* Show Lists Section */
+.show-lists-section {
+    color: var(--light-text); /* Text color */
+    padding: 20px;
+    max-width: 75%;
+    z-index: inherit;
+}
+
+.show-lists-section h1 {
+    font-size: 2rem; /* Fixed font size */
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+/* Card Container */
+.show-lists-section .card-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow: scroll;
+
+    gap: 10px;
+    padding: 20px; /* Padding for better alignment */
+}
+
+.show-lists-section .card-container::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for WebKit browsers */
+}
+
+.show-lists-section .card-container {
+    -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
+    scrollbar-width: none;  /* Hide scrollbar for Firefox */
+}
+
+/* Individual Cards */
+.show-lists-section .card {
+    flex: 0 0 auto; /* Prevent cards from shrinking */
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Initial shadow */
+    position: relative; /* To position the overlay */
+    
+    width: calc(20vw - 100px); /* Fixed width for cards */
+    height: 20vw;
+}
+
+.show-lists-section .card:hover {
+    position: relative;
+    z-index: 100;
+    transform: scale(1.1); /* Slightly enlarge card on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+}
+
+.show-lists-section .card a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.show-lists-section .card a img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-overlay h2 {
+    /* padding: 25px; */
+    /* width: 100%; */
+    text-align: center;
+}
+
+.show-lists-section .card .card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    color: var(--light);
+    /* padding-bottom: 50px;     */
+    background: rgb(0,0,0);
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%); /* Semi-transparent background */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card-overlay-padding {
+    padding: 0 10px;
+}
+
+.show-lists-section .card:hover .card-overlay {
+    opacity: 1;
+}
+
+.show-lists-section .card:hover .card-overlay .price {
+    color: var(--gold);    
+    font-weight: bold;
+}
+
+.show-lists-section .card .icon-btn {
+    margin: 10px;
+    background-color: var(--deep-red);
+    padding: 10px;
+    border-radius: 50%;
+    color: var(--light);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.show-lists-section .card .icon-btn:hover {
+    background-color: var(--bright-red);
+}
+
+.show-lists-section .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 
+----- ----- ----- ----- ----- 
+SHOW DETAILS
+----- ----- ----- ----- ----- 
+*/
+.show-detail {
+    width: 100%;
+    position: fixed;
+}
+
+.show-detail img {
+    object-fit: cover;
+    object-position: center;
+    height: 100vh;
+    width: 100%;
+}
+
+.show-detail-description {
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    z-index: 50;
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0, rgba(0,0,0,0) 100%);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+}
+
+.show-detail-description .header {
+    color: var(--light);
+    width: 75%;
+}
+
+.show-detail-description .header p {
+    text-align: justify;
+    text-indent: .5in;
+}

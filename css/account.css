@@ -1,0 +1,134 @@
+@import url('./variables.css');
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+/* Account Section */
+.account-section {
+    /* padding: 20px; */
+    position: relative;
+    /* top: 75px; */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+}
+
+.account-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: calc(100vw * .75);
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: calc(100vw * .75);
+}
+
+.account-container img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto 20px;
+}
+
+.fullname-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.label-section {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.account-container form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 25px;
+    width: 100%;
+    font-size: 1.5rem;
+}
+
+.label-section label {
+    flex-grow: 1;
+    width: 50%;
+}
+
+.label-section input {
+    flex-grow: 1;
+    width: 50%;
+
+    outline: none;
+    border: none;
+    border-bottom: 1px solid lightgray;
+    padding: 0 25px;
+}
+
+.label-section input:focus {
+    border-bottom: 1px solid var(--gold);
+}
+
+.label-section h3 {
+    margin: 0;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.label-section p {
+    margin: 5px 0 0;
+    font-size: 1em;
+    color: #666;
+}
+
+.btn-edit {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.btn-edit:hover {
+    background-color: #0056b3;
+}
+
+.account-buttons {
+    padding: 10px;
+    width: 50%;
+    background-color: var(--gold);
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.account-buttons:hover {
+    background-color: var(--bright-yellow);
+}
+
+.logout {
+    background-color: var(--deep-red);
+    color: var(--light);
+    font-weight: bold;
+}
+.logout:hover {
+    background-color: var(--bright-red);
+    color: var(--light);
+    font-weight: bold;
+}

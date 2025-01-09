@@ -1,0 +1,113 @@
+/* Card Container */
+.show-lists-section .card-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow: scroll;
+
+    gap: 10px;
+    padding: 20px; /* Padding for better alignment */
+}
+
+.show-lists-section .card-container::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for WebKit browsers */
+}
+
+.show-lists-section .card-container {
+    -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
+    scrollbar-width: none;  /* Hide scrollbar for Firefox */
+}
+
+/* Individual Cards */
+.show-lists-section .card {
+    flex: 0 0 auto; /* Prevent cards from shrinking */
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Initial shadow */
+    position: relative; /* To position the overlay */
+    
+    width: calc(20vw - 100px); /* Fixed width for cards */
+    height: 20vw;
+}
+
+.show-lists-section .card:hover {
+    position: relative;
+    z-index: 100;
+    transform: scale(1.1); /* Slightly enlarge card on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+}
+
+.show-lists-section .card a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.show-lists-section .card a img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-overlay h2 {
+    /* padding: 25px; */
+    /* width: 100%; */
+    text-align: center;
+}
+
+.show-lists-section .card .card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    color: var(--light);
+    /* padding-bottom: 50px;     */
+    background: rgb(0,0,0);
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%); /* Semi-transparent background */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card-overlay-padding {
+    padding: 0 10px;
+}
+
+.show-lists-section .card:hover .card-overlay {
+    opacity: 1;
+}
+
+.show-lists-section .card:hover .card-overlay .price {
+    color: var(--gold);    
+    font-weight: bold;
+}
+
+.show-lists-section .card .icon-btn {
+    margin: 10px;
+    background-color: var(--deep-red);
+    padding: 10px;
+    border-radius: 50%;
+    color: var(--light);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.show-lists-section .card .icon-btn:hover {
+    background-color: var(--bright-red);
+}
+
+.show-lists-section .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
