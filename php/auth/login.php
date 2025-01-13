@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="../../css/login.css">
 </head>
+
 <body>
     <div class="login-container">
         <form method="post" action="../process/login_process.php">
@@ -14,7 +16,7 @@
                 <input type="email" id="email" name="email" placeholder=" " required>
                 <label for="email">Email</label>
             </div>
-            
+
             <div class="form-group">
                 <input type="password" id="password" name="password" placeholder=" " required>
                 <label for="password">Password</label>
@@ -41,4 +43,5 @@
 
     <script src="../../js/login.js"></script>
 </body>
+
 </html>
