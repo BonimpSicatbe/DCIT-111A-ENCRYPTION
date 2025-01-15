@@ -3,8 +3,7 @@ session_start();
 include("../server.php");
 
 // Function to generate a random key for the alphabetic OTP
-function generateRandomKey($length)
-{
+function generateRandomKey($length) {
     $key = '';
     $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     for ($i = 0; $i < $length; $i++) {
@@ -14,20 +13,17 @@ function generateRandomKey($length)
 }
 
 // Function to convert a letter to its corresponding index (A=0, B=1, ..., Z=25)
-function letterToIndex($char)
-{
+function letterToIndex($char) {
     return ord(strtoupper($char)) - ord('A');
 }
 
 // Function to convert an index to its corresponding letter
-function indexToLetter($index)
-{
+function indexToLetter($index) {
     return chr(($index % 26) + ord('A'));
 }
 
 // Function to encrypt a message using the alphabetic OTP
-function alphabeticEncrypt($message, $key)
-{
+function alphabeticEncrypt($message, $key) {
     $cipher = '';
     $message = strtoupper($message);
     $key = strtoupper($key);

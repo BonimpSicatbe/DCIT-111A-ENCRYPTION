@@ -2,31 +2,52 @@
 session_start();
 include("../server.php");
 
-// Function to encrypt using Python-style OTP (must match the encryption function)
-function stringEncryption($text, $key)
-{
-    $cipherText = "";
-    $cipher = array();
+// Function to convert a letter to its corresponding index (A=0, B=1, ..., Z=25)
+function letterToIndex($char) {
+    return ord(strtoupper($char)) - ord('A');
+}
 
-    // Calculate cipher values
-    for ($i = 0; $i < strlen($key); $i++) {
-        $cipher[$i] = (ord($text[$i]) - ord('A')) + (ord($key[$i]) - ord('A'));
-    }
+// Function to convert an index to its corresponding letter
+function indexToLetter($index) {
+    return chr(($index % 26) + ord('A'));
+}
 
-    // Apply modulo 26 if value exceeds 25
-    for ($i = 0; $i < strlen($key); $i++) {
-        if ($cipher[$i] > 25) {
-            $cipher[$i] = $cipher[$i] - 26;
+// Function to encrypt a message using the alphabetic OTP
+function alphabeticEncrypt($message, $key) {
+    $cipher = '';
+    $message = strtoupper($message);
+    $key = strtoupper($key);
+    $keyLength = strlen($key);
+
+    for ($i = 0; $i < strlen($message); $i++) {
+        if (ctype_alpha($message[$i])) {
+            $messageIndex = letterToIndex($message[$i]);
+            $keyIndex = letterToIndex($key[$i % $keyLength]);
+            $cipher .= indexToLetter($messageIndex + $keyIndex);
+        } else {
+            $cipher .= $message[$i];
         }
     }
+    return $cipher;
+}
 
-    // Convert to final cipher text
-    for ($i = 0; $i < strlen($key); $i++) {
-        $x = $cipher[$i] + ord('A');
-        $cipherText .= chr($x);
+// Function to decrypt a cipher using the alphabetic OTP
+function alphabeticDecrypt($cipher, $key) {
+    $message = '';
+    $cipher = strtoupper($cipher);
+    $key = strtoupper($key);
+    $keyLength = strlen($key);
+
+    for ($i = 0; $i < strlen($cipher); $i++) {
+        if (ctype_alpha($cipher[$i])) {
+            $cipherIndex = letterToIndex($cipher[$i]);
+            $keyIndex = letterToIndex($key[$i % $keyLength]);
+            $message .= indexToLetter($cipherIndex - $keyIndex + 26);
+        } else {
+            $message .= $cipher[$i];
+        }
     }
-
-    return $cipherText;
+    return $message;
 }
 
 // Check connection
@@ -37,49 +58,32 @@ if ($connect->connect_error) {
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $connect->real_escape_string($_POST['email']);
-    $password = strtoupper($connect->real_escape_string($_POST['password'])); // Convert to uppercase
-    $captcha = $connect->real_escape_string($_POST['captcha']);
-    $remember = isset($_POST['remember']);
+    $password = strtoupper($connect->real_escape_string($_POST['password']));
+    $key = strtoupper($connect->real_escape_string($_POST['key']));
 
-    if (isset($_SESSION['captcha']) && $captcha == $_SESSION['captcha']) {
-        // Query to check if the email exists in the database
-        $sql = "SELECT * FROM useraccount WHERE email='$email'";
-        $result = $connect->query($sql);
+    // Query to check if the email exists
+    $sql = "SELECT * FROM useraccount WHERE email='$email'";
+    $result = $connect->query($sql);
 
-        if ($result->num_rows > 0) {
-            // Fetch user data
-            $user = $result->fetch_assoc();
+    if ($result->num_rows > 0) {
+        $user = $result->fetch_assoc();
+        $stored_cipher = $user['password'];
+        $stored_key = strtoupper($user['encryption_key']);
 
-            // Get the encryption key
-            $encryption_key = $user['encryption_key'];
+        // Decrypt the stored password
+        $decrypted_password = alphabeticDecrypt($stored_cipher, $stored_key);
 
-            // Encrypt the provided password with the same key
-            $encrypted_password = stringEncryption($password, $encryption_key);
-
-            // Verify the password
-            if ($encrypted_password === $user['password']) {
-                // Set session variables
-                $_SESSION['email'] = $user['email'];
-                $_SESSION['username'] = $user['username'];
-                $_SESSION['user_id'] = $user['user_id'];
-
-                // Set "Remember Me" cookie if checkbox is checked
-                if ($remember) {
-                    setcookie("rememberme", $user['email'], time() + (3600), "/"); // Set cookie for 1 hour
-                }
-
-                header("Location: ../../index.php");
-                exit();
-            } else {
-                echo '<script>alert("Invalid email or password!");window.location.href="../auth/login.php";</script>';
-            }
+        if ($decrypted_password === $password) {
+            $_SESSION['email'] = $user['email'];
+            $_SESSION['username'] = $user['username'];
+            $_SESSION['user_id'] = $user['user_id'];
+            header("Location: ../../index.php");
+            exit();
         } else {
-            echo '<script>alert("Invalid email or password!");window.location.href="../auth/login.php";</script>';
+            echo '<script>alert("Invalid password or key!");window.location.href="../auth/login.php";</script>';
         }
     } else {
-        echo '<script>alert("Invalid CAPTCHA!");window.location.href="../auth/login.php";</script>';
+        echo '<script>alert("Invalid email or password!");window.location.href="../auth/login.php";</script>';
     }
-} else {
-    echo '<script>alert("Invalid request method!");window.location.href="../auth/login.php";</script>';
 }
 ?>
